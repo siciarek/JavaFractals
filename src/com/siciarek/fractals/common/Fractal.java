@@ -8,7 +8,7 @@ abstract public class Fractal {
 	public Integer currentIteration = 0;
 	public String name = "Abstract Fractal";
 	protected float x1, y1, x2, y2, miny = -1.0f;
-	private boolean reset;
+	private boolean reset = true;
 	
 	public Fractal(Drawable canvas, boolean reset) {
 		this.canvas = canvas;
@@ -42,10 +42,6 @@ abstract public class Fractal {
 	
 	public void generate(Integer iteration) {
 		
-		if(reset == true) {
-			canvas.reset();
-		}
-
 		String title = this.name;
 		title += this.iterations > 0
 			? " (" + iteration + "/" + this.getIterations() + ")"
@@ -55,6 +51,11 @@ abstract public class Fractal {
 		canvas.updateTitle(title);
 
 		if(this.iterations > 0) {
+
+		    if(reset == true) {
+	            canvas.reset();
+	        }
+
 			this.init(x1, y1);
 			this.render(iteration, x1, y1, x2, y2);
 		}
