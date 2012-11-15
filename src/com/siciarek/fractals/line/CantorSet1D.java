@@ -7,7 +7,7 @@ public class CantorSet1D extends Fractal {
 
 	public CantorSet1D(Drawable canvas) {
 		super(canvas);
-		this.name = "Cantor set 1D";
+		this.name = "Cantor Set 1D";
 		this.x1 = 0f;
 		this.y1 = canvas.getHeight() * 0.5f;
 		this.x2 = canvas.getWidth();

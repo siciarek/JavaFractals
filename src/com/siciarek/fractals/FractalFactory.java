@@ -28,7 +28,7 @@ public class FractalFactory {
 		else if(name.equals("Sierpinski Carpet")) {
 			fractal =  new SierpinskiCarpet(canvas);
 		}
-		else if(name.equals("Chaos Game: Triangle")) {
+		else if(name.equals("Chaos Game Triangle")) {
 			fractal =  new ChaosGameTriangle(canvas);
 		}
 		else {

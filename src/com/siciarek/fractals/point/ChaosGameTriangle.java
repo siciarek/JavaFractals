@@ -15,7 +15,7 @@ public class ChaosGameTriangle extends SierpinskiTriangle {
 	
 	public ChaosGameTriangle(Drawable canvas) {
 		super(canvas, true);
-		this.name = "Chaos Game: Triangle";
+		this.name = "Chaos Game Triangle";
 		this.style = "stroke";
 		this.step = 500;
 		this.iterations = 10000;
