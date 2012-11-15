@@ -6,6 +6,11 @@ public class SvgCanvas implements Drawable {
 	private float width;
 	private float height;
 	private boolean debug = false;
+	private String title;
+
+	public void updateTitle(String title) {
+		this.title = title;
+	}
 
 	public void init(String style) {
 		System.out
@@ -39,6 +44,7 @@ public class SvgCanvas implements Drawable {
 
 	public void finalize() {
 		System.out.print("\" />");
+		System.out.print("<text x=\"10\" y=\"24\" font-family=\"sans-serif\" font-size=\"16\">" + title + "</text>");
 		System.out.print("</svg>");
 	}
 

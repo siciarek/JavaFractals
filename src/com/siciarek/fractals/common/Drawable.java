@@ -7,7 +7,8 @@ public interface Drawable {
 	
 	public float getWidth();
 	public float getHeight();
-	
+
+	public void updateTitle(String title);
 	public void setPoint(float x, float y);
 	public void moveTo(float x, float y);
 	public void lineTo(float x, float y);

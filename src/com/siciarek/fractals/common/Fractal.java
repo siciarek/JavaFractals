@@ -45,14 +45,20 @@ abstract public class Fractal {
 		if(reset == true) {
 			canvas.reset();
 		}
-		
-		if(this.iterations == 0) {
-			return;
-		}
+
+		String title = this.name;
+		title += this.iterations > 0
+			? " (" + iteration + "/" + this.getIterations() + ")"
+			: "";
 		
 		canvas.init(this.style);
-		this.init(x1, y1);
-		this.render(iteration, x1, y1, x2, y2);
+		canvas.updateTitle(title);
+
+		if(this.iterations > 0) {
+			this.init(x1, y1);
+			this.render(iteration, x1, y1, x2, y2);
+		}
+		
 		canvas.finalize();
 	}
 
