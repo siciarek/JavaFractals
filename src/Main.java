@@ -1,20 +1,70 @@
 import com.siciarek.fractals.common.Drawable;
 import com.siciarek.fractals.common.Fractal;
+import gnu.getopt.*;
 
-class Main {
-	public static void main(String[] args) {
+public class Main {
 
-		String name = args.length > 0 ? args[0] : "Koch Curve";
-		Integer iter = args.length > 1 ? Integer.parseInt(args[1]) : 3;
-		String orientation = args.length > 2 ? args[2] : "h";
+    public static void main(String[] args) {
 
-		Drawable canvas;
-		Fractal fractal;
+        // Default values:
+        String name = "Koch Curve";
+        Integer stage = 3;
+        String orientation = "horizontal";
+        Boolean help = false;
+        
+        // </handling-commandline-options>
 
-		canvas = orientation.equals("h") ? new SvgCanvas(800f, 404f)
-				: new SvgCanvas(202f, 400f);
+        StringBuffer sb = new StringBuffer();
+        LongOpt[] longopts = new LongOpt[4];
+        longopts[0] = new LongOpt("help", LongOpt.NO_ARGUMENT, null, 'h');
+        longopts[1] = new LongOpt("fractal", LongOpt.REQUIRED_ARGUMENT, sb, 'f');
+        longopts[2] = new LongOpt("stage", LongOpt.REQUIRED_ARGUMENT, sb, 's');
+        longopts[3] = new LongOpt("orientation", LongOpt.REQUIRED_ARGUMENT, sb, 'o');
 
-		fractal = com.siciarek.fractals.FractalFactory.get(name, canvas);
-		fractal.generate(iter);
-	}
+        Getopt g = new Getopt("testprog", args, "", longopts);
+
+        int c;
+
+        while ((c = g.getopt()) != -1) {
+
+            switch (c) {
+
+            case 'h':
+                help = true;
+                break;
+
+            case 0:
+                String opt = longopts[g.getLongind()].getName();
+                String value = g.getOptarg();
+
+                if (opt.equals("fractal")) {
+                    name = value;
+                }
+
+                if (opt.equals("stage")) {
+                    stage = Integer.parseInt(value);
+                }
+
+                if (opt.equals("orientation")) {
+                    orientation = value;
+                }
+
+                break;
+            }
+        }
+
+        // </handling-commandline-options>
+        
+        if(help == true) {
+            System.out.println("HELP");
+            System.exit(0);
+        }
+        
+        Drawable canvas;
+        Fractal fractal;
+
+        canvas = orientation.equals("horizontal") ? new SvgCanvas(800f, 404f) : new SvgCanvas(404f, 800f);
+        fractal = com.siciarek.fractals.FractalFactory.get(name, canvas);
+        fractal.generate(stage);
+    }
 }

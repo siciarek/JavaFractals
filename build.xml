@@ -2,14 +2,15 @@
 <!DOCTYPE project>
 <project default="compile-and-run" name="Java Fractals Library">
 
-    <target name="compile-and-run" depends="cc, compile, run" />
+    <target name="compile-and-run" depends="cc, compile, create_run_jar, runx" />
     <property name="output-file" value="fractal.svg" />
 
 	<target name="test" depends="cc, compile">
         <junit printsummary="yes" fork="true">
             <classpath>
-               <pathelement location="bin"/>
-               <pathelement location="utils/junit-4.10.jar"/>
+                <pathelement location="bin"/>
+                <pathelement location="lib/junit-4.10.jar"/>
+                <pathelement location="lib/java-getopt-1.0.13.jar"/>
             </classpath>
 			<formatter type="plain" usefile="false" /> 
             <test name="com.siciarek.fractals.test.AllTests" />
@@ -19,7 +20,7 @@
 	<target name="cc">
 		<delete dir="bin"/>
 		<delete verbose="true" includeemptydirs="true">
-			<fileset dir="." includes="*.svg" />
+			<fileset dir="." includes="*.svg *.jar" />
 		</delete>
 	</target>
 	   
@@ -28,21 +29,41 @@
 		<javac srcdir="src" destdir="bin" includeantruntime="true">
 			<classpath>
 	        	<pathelement location="."/>
-                <pathelement location="utils/junit-4.10.jar"/>
-	        </classpath>
+                <pathelement location="lib/junit-4.10.jar"/>
+	        	<pathelement location="lib/java-getopt-1.0.13.jar"/>
+             </classpath>
 		</javac>
 	</target>
 	
+	<target name="create_run_jar">
+		<delete dir="dist" verbose="true" />
+	    <mkdir dir="dist"/>
+				
+		<jar destfile="dist/fractal.jar">
+			<manifest>
+				<attribute name="Main-Class" value="org.eclipse.jdt.internal.jarinjarloader.JarRsrcLoader" />
+				<attribute name="Rsrc-Main-Class" value="Main" />
+				<attribute name="Class-Path" value="." />
+				<attribute name="Rsrc-Class-Path" value="./ java-getopt-1.0.13.jar" />
+			</manifest>
+			<zipfileset src="lib/jar-in-jar-loader.zip" />
+			<zipfileset dir="lib" includes="java-getopt-1.0.13.jar" />
+			<fileset dir="bin" />
+		</jar>
+	</target>
+		
 	<target name="run">
-		<java classname="Main" dir="bin" fork="yes" output="${output-file}" >
-		    <arg value="Koch Quadratic Curve" />
-		    <arg value="3" />
-		    <arg value="h" />
-			<classpath>
-	        	<pathelement location="bin"/>
-	         </classpath>
+		<java jar="fractal.jar" dir="dist" fork="yes" output="${output-file}">
+		    <arg line="--fractal=&quot;Koch Quadratic Curve&quot; --stage=4 --orientation=horizontal" />
 	    </java>
-	    <exec executable="firefox">
+	    <loadresource property="output-content">
+            <file file="${output-file}"/>
+        </loadresource>
+        <echo message="${output-content}"/>
+	</target>
+
+	<target name="runx" depends="run">
+		<exec executable="firefox">
 	        <arg line="-new-window ${output-file}" />
 	    </exec>
 	</target>
