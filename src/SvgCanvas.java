@@ -1,91 +1,94 @@
-
 import com.siciarek.fractals.common.Drawable;
 
 public class SvgCanvas implements Drawable {
 
-	private float width;
-	private float height;
-	private boolean debug = false;
-	private String title;
+    String background = "#FAFAD2";
+    String foreground = "#141414";
 
-	public void updateTitle(String title) {
-		this.title = title;
-	}
+    private float width;
+    private float height;
+    private boolean debug = false;
+    private String title;
 
-	public void init(String style) {
-		System.out
-				.print("<svg xmlns=\"http://www.w3.org/2000/svg\" width=\""
-						+ (int) this.width + "\" height=\"" + (int) this.height
-						+ "\">");
+    public void updateTitle(String title) {
+        this.title = title;
+    }
 
-		if (this.debug == true) {
-			System.out.print("<line stroke=\"red\" x1=\"0\" x2=\"" + this.width
-					+ "\" y1=\"" + this.height * 0.5 + "\" y2=\"" + this.height
-					* 0.5 + "\"  />");
-			System.out.print("<line stroke=\"red\" y1=\"0\" y2=\""
-					+ this.height + "\" x1=\"" + this.width * 0.5 + "\" x2=\""
-					+ this.width * 0.5 + "\"  />");
-		}
+    public void init(String style) {
+        System.out.println("<?xml version=\"1.0\" encoding=\"UTF-8\" ?>");
+        System.out.println("<svg style=\"background-color: black\" xmlns=\"http://www.w3.org/2000/svg\" "
+                + "width=\"" + (int) this.width + "\" "
+                + "height=\"" + (int) this.height + "\" "
+                + "viewBox=\"0 0 " + (int) this.width + " " + (int) this.height
+                + "\">");
+        
 
-		String stroke = "black";
-		String fill = "none";
+        if (this.debug == true) {
+            System.out.println("<line stroke=\"red\" x1=\"0\" x2=\"" + this.width + "\" y1=\"" + this.height * 0.5
+                    + "\" y2=\"" + this.height * 0.5 + "\"  />");
+            System.out.println("<line stroke=\"red\" y1=\"0\" y2=\"" + this.height + "\" x1=\"" + this.width * 0.5
+                    + "\" x2=\"" + this.width * 0.5 + "\"  />");
+        }
 
-		if (style == "fill") {
-			fill = "black";
-			stroke = "none";
-		}
+        String stroke = foreground;
+        String fill = "none";
 
-		System.out
-				.print("<rect stroke=\"silver\" fill=\"none\" x=\"0\" y=\"0\" width=\""
-						+ this.width + "\" height=\"" + this.height + "\" />");
-		System.out.print("<path fill=\"" + fill + "\" stroke=\"" + stroke
-				+ "\" stroke-width=\"2\" d=\"");
-	}
+        if (style == "fill") {
+            fill = foreground;
+            stroke = "none";
+        }
 
-	public void finalize() {
-		System.out.print("\" />");
-		System.out.print("<text x=\"10\" y=\"24\" font-family=\"sans-serif\" font-size=\"16\">" + title + "</text>");
-		System.out.print("</svg>");
-	}
+        System.out.println("<rect fill=\"" + background + "\" x=\"0\" y=\"0\" width=\"" + (int) this.width
+                + "\" height=\"" + (int) this.height + "\" />");
+        
+        System.out.print("<path fill=\"" + fill + "\" stroke=\"" + stroke + "\" stroke-width=\"2\" d=\"");
+    }
 
-	public SvgCanvas(float width, float height, boolean debug) {
-		this.debug = debug;
-		this.width = width;
-		this.height = height;
-	}
+    public void finalize() {
+        System.out.println("\" />");
+        System.out.println("<text x=\"10\" y=\"24\" fill=\"#555555\" font-family=\"sans-serif\" font-size=\"16\">" + title + "</text>");
+        System.out.println("</svg>");
+        System.out.println();
+    }
 
-	public SvgCanvas(float width, float height) {
-		this(width, height, false);
-	}
+    public SvgCanvas(float width, float height, boolean debug) {
+        this.debug = debug;
+        this.width = width;
+        this.height = height;
+    }
 
-	public float getWidth() {
-		return this.width;
-	}
+    public SvgCanvas(float width, float height) {
+        this(width, height, false);
+    }
 
-	public float getHeight() {
-		return this.height;
-	}
+    public float getWidth() {
+        return this.width;
+    }
 
-	public void moveTo(float x, float y) {
-		System.out.print("M" + x + "," + y + " ");
-	}
+    public float getHeight() {
+        return this.height;
+    }
 
-	public void lineTo(float x, float y) {
-		System.out.print("L" + x + "," + y + " ");
-	}
+    public void moveTo(float x, float y) {
+        System.out.print("M" + x + "," + y + " ");
+    }
 
-	public void close() {
-		System.out.print("Z");
-	}
+    public void lineTo(float x, float y) {
+        System.out.print("L" + x + "," + y + " ");
+    }
 
-	public void reset() {
+    public void close() {
+        System.out.print("Z");
+    }
 
-	}
+    public void reset() {
 
-	public void setPoint(float x, float y) {
-		if (x < getWidth() - 1.0f && y < getHeight() - 1.0f) {
-			moveTo(x, y);
-			lineTo(x + 1, y + 1);
-		}
-	}
+    }
+
+    public void setPoint(float x, float y) {
+        if (x < getWidth() - 1.0f && y < getHeight() - 1.0f) {
+            moveTo(x, y);
+            lineTo(x + 1, y + 1);
+        }
+    }
 }

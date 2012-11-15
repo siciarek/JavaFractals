@@ -6,11 +6,12 @@ public class Main {
 
     public static void main(String[] args) {
 
+        Boolean help = false;
+
         // Default values:
         String name = "Koch Curve";
         Integer stage = 3;
         String orientation = "horizontal";
-        Boolean help = false;
         
         // </handling-commandline-options>
 
@@ -21,7 +22,7 @@ public class Main {
         longopts[2] = new LongOpt("stage", LongOpt.REQUIRED_ARGUMENT, sb, 's');
         longopts[3] = new LongOpt("orientation", LongOpt.REQUIRED_ARGUMENT, sb, 'o');
 
-        Getopt g = new Getopt("testprog", args, "", longopts);
+        Getopt g = new Getopt("fractal", args, "", longopts);
 
         int c;
 

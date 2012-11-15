@@ -53,8 +53,8 @@
 	</target>
 		
 	<target name="run">
-		<java jar="fractal.jar" dir="dist" fork="yes" output="${output-file}">
-		    <arg line="--fractal=&quot;Koch Quadratic Curve&quot; --stage=4 --orientation=horizontal" />
+		<java jar="dist/fractal.jar" fork="yes" output="${output-file}">
+		    <arg line="--fractal=&quot;Koch Quadratic Curve&quot; --stage=5 --orientation=horizontal" />
 	    </java>
 	    <loadresource property="output-content">
             <file file="${output-file}"/>
@@ -64,7 +64,7 @@
 
 	<target name="runx" depends="run">
 		<exec executable="firefox">
-	        <arg line="-new-window ${output-file}" />
+	        <arg line="-new-tab ${output-file}" />
 	    </exec>
 	</target>
 
