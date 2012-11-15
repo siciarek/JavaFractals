@@ -2,7 +2,7 @@
 <!DOCTYPE project>
 <project default="compile-and-run" name="Java Fractals Library">
 
-    <target name="compile-and-run" depends="cc, compile, create_run_jar, runx" />
+    <target name="compile-and-run" depends="cc, compile, create_run_jar, show" />
     <property name="output-file" value="fractal.svg" />
 
 	<target name="test" depends="cc, compile">
@@ -63,7 +63,7 @@
         <echo message="${output-content}"/>
 	</target>
 
-	<target name="runx" depends="run">
+	<target name="show" depends="run">
 		<exec executable="firefox">
 	        <arg line="-new-tab ${output-file}" />
 	    </exec>
