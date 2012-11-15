@@ -36,15 +36,9 @@ public class FractalFactoryTest {
 			{ "Sierpinski Carpet" }
 		});
 	}
-
-	@Test
-	public void testNotImplementedFractal() {
-		Fractal f = com.siciarek.fractals.FractalFactory.get("Dummy", canvas);
-		assertEquals("Dummy is not implemented yet", f.name);
-	}
 	
 	@Test
-	public void testImplementedFractals() {
+	public void implementedFractals() {
 		Fractal f = com.siciarek.fractals.FractalFactory.get(given, canvas);
 		assertEquals(given, f.name);
 	}

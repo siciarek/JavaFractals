@@ -5,18 +5,25 @@
     <target name="compile-and-run" depends="cc, compile, run" />
     <property name="output-file" value="fractal.svg" />
 
-	<target name="test">
-		<echo>OK</echo>
+	<target name="test" depends="cc, compile">
+        <junit printsummary="yes" fork="true">
+            <classpath>
+               <pathelement path="bin"/>
+            </classpath>
+			<formatter type="plain" usefile="false" /> 
+            <test name="com.siciarek.fractals.test.AllTests" />
+        </junit>
 	</target>	
    
 	<target name="cc">
+		<delete dir="bin"/>
 		<delete verbose="true" includeemptydirs="true">
-			<fileset dir="bin" includes="**/*" />
 			<fileset dir="." includes="*.svg" />
 		</delete>
 	</target>
 	   
 	<target name="compile">
+		<mkdir dir="bin"/>
 		<javac srcdir="src" destdir="bin" includeantruntime="true">
 			<classpath>
 	        	<pathelement location="."/>

@@ -5,7 +5,8 @@ import org.junit.runners.Suite;
 import org.junit.runners.Suite.SuiteClasses;
 
 @RunWith(Suite.class)
-@SuiteClasses({ FractalFactoryTest.class, GenericFractalTest.class })
+@SuiteClasses({ FractalFactoryNotSupportedTest.class, FractalFactoryTest.class,
+		GenericFractalTest.class })
 public class AllTests {
 
 }
