@@ -19,6 +19,7 @@
    
 	<target name="cc">
 		<delete dir="bin"/>
+   		<delete dir="dist"/>
 		<delete verbose="true" includeemptydirs="true">
 			<fileset dir="." includes="*.svg *.jar" />
 		</delete>
