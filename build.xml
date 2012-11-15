@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE project>
+<project default="compile-and-run" name="Java Fractals Library">
+
+    <target name="compile-and-run" depends="compile, run" />
+ 
+	<target name="cc">
+		<delete verbose="true" includeemptydirs="true">
+			<fileset dir="bin" includes="**/*" />
+			<fileset dir="." includes="*.svg" />
+		</delete>
+	</target>
+	
+
+	   
+	<target name="compile">
+		<javac srcdir="src" destdir="bin" includeantruntime="true">
+			<classpath>
+	        	<pathelement location="."/>
+	         </classpath>
+		</javac>
+	</target>
+	
+	<target name="run">
+		<java classname="Main" dir="bin" fork="yes" output="fractal.svg" >
+		    <arg value="0" />
+		    <arg value="h" />
+			<classpath>
+	        	<pathelement location="bin"/>
+	         </classpath>
+	    </java>
+	</target>
+
+</project>
