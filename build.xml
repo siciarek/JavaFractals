@@ -4,7 +4,11 @@
 
     <target name="compile-and-run" depends="cc, compile, run" />
     <property name="output-file" value="fractal.svg" />
-    
+
+	<target name="test">
+		<echo>OK</echo>
+	</target>	
+   
 	<target name="cc">
 		<delete verbose="true" includeemptydirs="true">
 			<fileset dir="bin" includes="**/*" />
