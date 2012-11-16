@@ -15,7 +15,8 @@ public class SvgCanvas implements Drawable {
     }
 
     public void init(String style) {
-        System.out.println("<?xml version=\"1.0\" encoding=\"UTF-8\" ?>");
+        System.out.println("<?xml version=\"1.0\" encoding=\"UTF-8\"?>");
+        System.out.println("<!DOCTYPE svg>");
         System.out.println("<svg style=\"background-color: black\" xmlns=\"http://www.w3.org/2000/svg\" "
                 + "width=\"" + (int) this.width + "\" "
                 + "height=\"" + (int) this.height + "\" "
