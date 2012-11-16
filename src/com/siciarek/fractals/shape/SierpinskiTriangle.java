@@ -13,7 +13,7 @@ public class SierpinskiTriangle extends Fractal {
 	public SierpinskiTriangle(Drawable canvas, boolean reset) {
 		super(canvas);
 		this.name = "Sierpinski Triangle";
-		this.style = "fill";
+		this.type = "shape";
 
 		this.x1 = 0f;
 		this.y1 = canvas.getHeight();

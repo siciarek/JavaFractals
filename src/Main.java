@@ -1,11 +1,13 @@
 import com.siciarek.fractals.common.Drawable;
 import com.siciarek.fractals.common.Fractal;
+import com.siciarek.fractals.point.*;
+
 import gnu.getopt.*;
 
 public class Main {
 
     public static void main(String[] args) {
-
+        
         Boolean help = false;
 
         // Default values:
@@ -57,8 +59,7 @@ public class Main {
         // </handling-commandline-options>
         
         if(help == true) {
-            System.out.println("HELP");
-            System.exit(0);
+            usage();
         }
         
         Drawable canvas;
@@ -68,4 +69,22 @@ public class Main {
         fractal = com.siciarek.fractals.FractalFactory.get(name, canvas);
         fractal.generate(stage);
     }
+
+    /**
+     * Display application help text.
+     */
+    private static void usage() {
+        System.out.println("Usage: java -jar fractals.jar [options...]");
+        System.out.println("Options:");
+        System.out.println(" -h, --help               This help text");
+        System.out.println(" -f, --fractal NAME       Name the fractal (default: Koch Curve)");
+        System.out.println(" -V, --version            Show version number and quit");
+        System.out.println(" -s, --stage STAGE        Number of fractal iteration (default: 3)");
+        System.out.println(" -o, --orientation ORIEN  Image orientation (horizontal or vertical,");
+        System.out.println("                          default: horizontal)");
+        System.out.println();
+        System.out.println("Mail bug reports and suggestions to <siciarek@gmail.com>.");
+        System.exit(0);
+    }
+    
 }

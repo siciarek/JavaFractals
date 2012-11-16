@@ -2,7 +2,7 @@ package com.siciarek.fractals.common;
 
 abstract public class Fractal {
 	public Drawable canvas;
-	public String style = "stroke";
+	public String type = "line";
 	public Integer iterations = 6;
 	public Integer step = 1;
 	public Integer currentIteration = 0;
@@ -47,7 +47,7 @@ abstract public class Fractal {
 			? " (" + iteration + "/" + this.getIterations() + ")"
 			: "";
 		
-		canvas.init(this.style);
+		canvas.init(this.type);
 		canvas.updateTitle(title);
 
 		if(this.iterations > 0) {

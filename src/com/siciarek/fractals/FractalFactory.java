@@ -1,12 +1,9 @@
 package com.siciarek.fractals;
 
 import com.siciarek.fractals.common.*;
-import com.siciarek.fractals.line.CantorSet1D;
-import com.siciarek.fractals.line.KochCurve;
-import com.siciarek.fractals.line.KochQuadraticCurve;
-import com.siciarek.fractals.point.ChaosGameTriangle;
-import com.siciarek.fractals.shape.SierpinskiCarpet;
-import com.siciarek.fractals.shape.SierpinskiTriangle;
+import com.siciarek.fractals.point.*;
+import com.siciarek.fractals.line.*;
+import com.siciarek.fractals.shape.*;
 
 public class FractalFactory {
 	public static Fractal get(String name, Drawable canvas) {
@@ -28,9 +25,18 @@ public class FractalFactory {
 		else if(name.equals("Sierpinski Carpet")) {
 			fractal =  new SierpinskiCarpet(canvas);
 		}
-		else if(name.equals("Chaos Game Triangle")) {
-			fractal =  new ChaosGameTriangle(canvas);
-		}
+        else if(name.equals("Chaos Game Triangle")) {
+            fractal =  new ChaosGameTriangle(canvas);
+        }
+        else if(name.equals("Chaos Game Square")) {
+            fractal =  new ChaosGameSquare(canvas);
+        }
+        else if(name.equals("Chaos Game Pentagon")) {
+            fractal =  new ChaosGamePentagon(canvas);
+        }
+        else if(name.equals("Chaos Game Hexagon")) {
+            fractal =  new ChaosGameHexagon(canvas);
+        }
 		else {
 			fractal =  new NotSupported(canvas);
 			fractal.name = name + " is not implemented yet";

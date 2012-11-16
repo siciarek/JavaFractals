@@ -31,18 +31,23 @@ public class SvgCanvas implements Drawable {
                     + "\" x2=\"" + this.width * 0.5 + "\"  />");
         }
 
+        String shapeRendering = "default";
         String stroke = foreground;
         String fill = "none";
 
-        if (style == "fill") {
+        if (style.equals("shape")) {
             fill = foreground;
             stroke = "none";
         }
-
+        
+        if (style.equals("point")) {
+            shapeRendering = "crispEdges";
+        }
+        
         System.out.println("<rect fill=\"" + background + "\" x=\"0\" y=\"0\" width=\"" + (int) this.width
                 + "\" height=\"" + (int) this.height + "\" />");
         
-        System.out.print("<path fill=\"" + fill + "\" stroke=\"" + stroke + "\" stroke-width=\"2\" d=\"");
+        System.out.print("<path shape-rendering=\"" + shapeRendering + "\" fill=\"" + fill + "\" stroke=\"" + stroke + "\" stroke-width=\"2\" d=\"");
     }
 
     public void finalize() {

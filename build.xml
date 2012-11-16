@@ -2,7 +2,7 @@
 <!DOCTYPE project>
 <project default="compile-and-run" name="Java Fractals Library">
 
-    <target name="compile-and-run" depends="cc, compile, create_run_jar, show" />
+    <target name="compile-and-run" depends="cc, compile, create_run_jar, run" />
     <property name="output-file" value="fractal.svg" />
 
 	<target name="test" depends="cc, compile">
@@ -55,17 +55,22 @@
 		
 	<target name="run">
 		<java jar="dist/fractal.jar" fork="yes" output="${output-file}">
-		    <arg line="--fractal=&quot;Koch Quadratic Curve&quot; --stage=5 --orientation=horizontal" />
-	    </java>
+		    <arg line="--stage=20000 --orientation=horizontal" />
+		<!-- 
+		    	<arg line="- -fractal=&quot;Koch Quadratic Curve&quot; - -stage=4 - -orientation=horizontal" />
+		 -->
+		</java>
+		<!-- 
 	    <loadresource property="output-content">
             <file file="${output-file}"/>
         </loadresource>
         <echo message="${output-content}"/>
+        -->
 	</target>
 
 	<target name="show" depends="run">
 		<exec executable="firefox">
-	        <arg line="-new-tab ${output-file}" />
+	        <arg line="-new-window ${output-file}" />
 	    </exec>
 	</target>
 

@@ -3,13 +3,13 @@ package com.siciarek.fractals.point;
 import com.siciarek.fractals.common.Drawable;
 import com.siciarek.fractals.common.ChaosGameFractal;
 
-public class ChaosGameTriangle extends ChaosGameFractal {
+public class ChaosGameHexagon extends ChaosGameFractal {
 	
-	public ChaosGameTriangle(Drawable canvas) {
+	public ChaosGameHexagon(Drawable canvas) {
 		super(canvas);
-		this.name = "Chaos Game Triangle";
-		this.vertices = 3;
+		this.name = "Chaos Game Hexagon";
+		this.vertices = 6;
 		this.startAngle = 0f;
-		this.phi = 0.5f;
+		this.phi = 1.0f / 3.0f;
 	}
 }
