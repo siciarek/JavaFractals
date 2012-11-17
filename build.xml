@@ -55,10 +55,7 @@
 		
 	<target name="run">
 		<java jar="dist/fractal.jar" fork="yes" output="${output-file}">
-		    <arg line="--stage=20000 --orientation=horizontal" />
-		<!-- 
-		    	<arg line="- -fractal=&quot;Koch Quadratic Curve&quot; - -stage=4 - -orientation=horizontal" />
-		 -->
+	    	<arg line="--fractal=&quot;Koch Quadratic Curve&quot; --stage=4 --orientation=horizontal" />
 		</java>
 		<!-- 
 	    <loadresource property="output-content">
