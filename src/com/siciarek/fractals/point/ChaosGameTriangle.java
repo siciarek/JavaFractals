@@ -10,6 +10,7 @@ public class ChaosGameTriangle extends ChaosGameFractal {
 		this.name = "Chaos Game Triangle";
 		this.vertices = 3;
 		this.startAngle = 0f;
-		this.phi = 0.5f;
+
+		this.phi = 1.0f / 2.0f;
 	}
 }

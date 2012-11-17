@@ -1,6 +1,7 @@
 package com.siciarek.fractals.point;
 
-import com.siciarek.fractals.common.*;
+import com.siciarek.fractals.common.Drawable;
+import com.siciarek.fractals.common.ChaosGameFractal;
 
 public class ChaosGamePentagon extends ChaosGameFractal {
 
@@ -22,29 +23,4 @@ public class ChaosGamePentagon extends ChaosGameFractal {
         newp[1] = p[1] + deltay * this.phi;
         return newp;
     }
-
-    protected void render(int iter, float sx, float sy, float ex, float ey) {
-
-        this.point = getRandomPoint();
-        this.canvas.setPoint(point[0], point[1]);
-
-        for (int i = 0; i < iter; i++) {
-            this.vertex = getVertex();
-
-            float vx = vertex[0];
-            float vy = vertex[1];
-
-            float px = point[0];
-            float py = point[1];
-
-            float x = px + (vx - px) * this.phi;
-            float y = py + (vy - py) * this.phi;
-
-            this.canvas.setPoint(x, y);
-
-            this.point[0] = x;
-            this.point[1] = y;
-        }
-    }
-
 }

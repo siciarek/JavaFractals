@@ -10,6 +10,7 @@ public class ChaosGameSquare extends ChaosGameFractal {
 		this.name = "Chaos Game Square";
 		this.vertices = 4;
 		this.startAngle = (float) Math.PI / 4f;
-		this.phi = 0.25f;
+
+		this.phi = 1.0f / 4.0f;
 	}
 }

@@ -10,6 +10,7 @@ public class ChaosGameHexagon extends ChaosGameFractal {
 		this.name = "Chaos Game Hexagon";
 		this.vertices = 6;
 		this.startAngle = 0f;
+
 		this.phi = 1.0f / 3.0f;
 	}
 }
