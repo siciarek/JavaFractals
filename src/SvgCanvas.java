@@ -1,9 +1,14 @@
+import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
+import java.util.Locale;
+
 import com.siciarek.fractals.common.Drawable;
 
 public class SvgCanvas implements Drawable {
 
     String background = "#FAFAD2";
     String foreground = "#141414";
+    DecimalFormat df;
 
     private float width;
     private float height;
@@ -15,14 +20,15 @@ public class SvgCanvas implements Drawable {
     }
 
     public void init(String style) {
+        DecimalFormatSymbols symbols = new DecimalFormatSymbols(new Locale("en", "US"));
+        df = new DecimalFormat("0.##", symbols);
+        df.setDecimalSeparatorAlwaysShown(false);
+
         System.out.println("<?xml version=\"1.0\" encoding=\"UTF-8\"?>");
         System.out.println("<!DOCTYPE svg>");
-        System.out.println("<svg style=\"background-color: black\" xmlns=\"http://www.w3.org/2000/svg\" "
-                + "width=\"" + (int) this.width + "\" "
-                + "height=\"" + (int) this.height + "\" "
-                + "viewBox=\"0 0 " + (int) this.width + " " + (int) this.height
-                + "\">");
-        
+        System.out.println("<svg style=\"background-color: black\" xmlns=\"http://www.w3.org/2000/svg\" " + "width=\""
+                + (int) this.width + "\" " + "height=\"" + (int) this.height + "\" " + "viewBox=\"0 0 "
+                + (int) this.width + " " + (int) this.height + "\">");
 
         if (this.debug == true) {
             System.out.println("<line stroke=\"red\" x1=\"0\" x2=\"" + this.width + "\" y1=\"" + this.height * 0.5
@@ -39,20 +45,22 @@ public class SvgCanvas implements Drawable {
             fill = foreground;
             stroke = "none";
         }
-        
+
         if (style.equals("point")) {
             shapeRendering = "crispEdges";
         }
-        
+
         System.out.println("<rect fill=\"" + background + "\" x=\"0\" y=\"0\" width=\"" + (int) this.width
                 + "\" height=\"" + (int) this.height + "\" />");
-        
-        System.out.print("<path shape-rendering=\"" + shapeRendering + "\" fill=\"" + fill + "\" stroke=\"" + stroke + "\" stroke-width=\"2\" d=\"");
+
+        System.out.print("<path shape-rendering=\"" + shapeRendering + "\" fill=\"" + fill + "\" stroke=\"" + stroke
+                + "\" stroke-width=\"2\" d=\"");
     }
 
     public void finalize() {
         System.out.println("\" />");
-        System.out.println("<text x=\"10\" y=\"24\" fill=\"#555555\" font-family=\"sans-serif\" font-size=\"16\">" + title + "</text>");
+        System.out.println("<text x=\"10\" y=\"24\" fill=\"#555555\" font-family=\"sans-serif\" font-size=\"16\">"
+                + title + "</text>");
         System.out.println("</svg>");
         System.out.println();
     }
@@ -76,11 +84,11 @@ public class SvgCanvas implements Drawable {
     }
 
     public void moveTo(float x, float y) {
-        System.out.print("M" + x + "," + y + " ");
+        System.out.print("M" + df.format(x) + "," + df.format(y));
     }
 
     public void lineTo(float x, float y) {
-        System.out.print("L" + x + "," + y + " ");
+        System.out.print("L" + df.format(x) + "," + df.format(y));
     }
 
     public void close() {

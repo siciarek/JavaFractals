@@ -1,6 +1,5 @@
 package com.siciarek.fractals.common;
 
-
 public class Utils {
 
     public final static float GOLDEN_RATIO = 1.6180339887498948482f;
@@ -31,7 +30,7 @@ public class Utils {
     }
 
     public static float[] rotatePoint(float angle, float base_x, float base_y, float point_x, float point_y) {
-        float[] point = { 0.0f, 0.0f };
+        float[] point = new float[2];
 
         float sin_a = (float) Math.sin(angle);
         float cos_a = (float) Math.cos(angle);

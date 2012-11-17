@@ -28,7 +28,9 @@ public class FractalFactoryTest {
 	@Parameters
 	public static Collection<String[]> dataProvider() {
 		return Arrays.asList(new String[][] {
-			{ "Chaos Game Triangle" },
+            { "Chaos Game Hexagon" },
+            { "Chaos Game Pentagon" },
+            { "Chaos Game Square" },
 			{ "Cantor Set 1D" },
 			{ "Koch Curve" },
 			{ "Koch Quadratic Curve" },

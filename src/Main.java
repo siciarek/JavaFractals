@@ -1,20 +1,24 @@
+import java.lang.reflect.InvocationTargetException;
+
+import gnu.getopt.Getopt;
+import gnu.getopt.LongOpt;
+
 import com.siciarek.fractals.common.Drawable;
 import com.siciarek.fractals.common.Fractal;
-import com.siciarek.fractals.point.*;
-
-import gnu.getopt.*;
 
 public class Main {
 
-    public static void main(String[] args) {
-        
+    public static void main(String[] args) throws ClassNotFoundException, InstantiationException,
+            IllegalAccessException, NoSuchMethodException, SecurityException, IllegalArgumentException,
+            InvocationTargetException {
+
         Boolean help = false;
 
         // Default values:
         String name = "Koch Curve";
         Integer stage = 3;
         String orientation = "horizontal";
-        
+
         // </handling-commandline-options>
 
         StringBuffer sb = new StringBuffer();
@@ -57,16 +61,17 @@ public class Main {
         }
 
         // </handling-commandline-options>
-        
-        if(help == true) {
+
+        if (help == true) {
             usage();
         }
-        
+
         Drawable canvas;
         Fractal fractal;
 
         canvas = orientation.equals("horizontal") ? new SvgCanvas(800f, 404f) : new SvgCanvas(404f, 800f);
         fractal = com.siciarek.fractals.FractalFactory.get(name, canvas);
+      
         fractal.generate(stage);
     }
 
@@ -86,5 +91,5 @@ public class Main {
         System.out.println("Mail bug reports and suggestions to <siciarek@gmail.com>.");
         System.exit(0);
     }
-    
+
 }
